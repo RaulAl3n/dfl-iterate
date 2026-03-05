@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { ActivityType } from '@/enums';
 import { Activity } from '@/types';
 import { ActivityGameCard, GameButton } from '@/components/game';
+import { useFixWithChoices } from '@/hooks/useFixWithChoices';
 
 interface FixWithChoicesProps {
   activity: Activity;
@@ -9,16 +9,14 @@ interface FixWithChoicesProps {
 }
 
 export function FixWithChoices({ activity, onSubmit }: FixWithChoicesProps) {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [submitted, setSubmitted] = useState(false);
+  const {
+    selectedId,
+    setSelectedId,
+    submitted,
+    handleSubmit
+  } = useFixWithChoices(onSubmit);
 
   if (activity.type !== ActivityType.FIX_WITH_CHOICES) return null;
-
-  const handleSubmit = () => {
-    if (!selectedId) return;
-    setSubmitted(true);
-    onSubmit(selectedId);
-  };
 
   return (
     <ActivityGameCard
