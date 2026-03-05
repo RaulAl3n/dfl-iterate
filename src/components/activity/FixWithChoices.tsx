@@ -20,8 +20,6 @@ export function FixWithChoices({ activity, onSubmit }: FixWithChoicesProps) {
     onSubmit(selectedId);
   };
 
-  console.log('FixWithChoices renderizou', activity);
-
   return (
     <ActivityGameCard
       type={activity.type}
@@ -39,14 +37,12 @@ export function FixWithChoices({ activity, onSubmit }: FixWithChoicesProps) {
         )
       }
     >
-      {/* Código bugado */}
       <div className="mb-6">
         <h3 className="font-bold mb-2">Código com erro:</h3>
         <pre className="bg-black text-green-400 p-4 rounded-xl text-sm overflow-auto">
           <code>{activity.aiGeneratedCode}</code>
         </pre>
       </div>
-
       {/* Opções */}
       <div className="space-y-4">
         {activity.fixOptions.map(option => (
@@ -87,8 +83,6 @@ export function FixWithChoices({ activity, onSubmit }: FixWithChoicesProps) {
           </label>
         ))}
       </div>
-
-    
     </ActivityGameCard>
   );
 }
