@@ -17,6 +17,13 @@ export interface DecisionOption {
   impact: string;
 }
 
+export type FixOption = {
+  id: string;
+  code: string;
+  explanation: string;
+  isCorrect: boolean;
+};
+
 export interface EditableRegion {
   startLine: number;
   endLine: number;
@@ -46,18 +53,12 @@ export interface Activity {
   instructions: string;
   targetFiles: string[];
   status: ActivityStatus;
-  options?: DecisionOption[];
+  options?: DecisionOption[] | FixOption[];
   aiGeneratedCode?: string;
   expectedIssues?: string[];
   editableRegions?: EditableRegion[];
   videoConfig?: VideoConfig;
   visualConfig?: VisualConfig;
-  fixOptions?: {
-    id: string;
-    code: string;
-    explanation: string;
-    isCorrect: boolean;
-  }[];
 }
 
 export interface ProjectFile {
