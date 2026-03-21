@@ -50,6 +50,14 @@ export interface VisualConfig {
   expectedOutput?: string;
 }
 
+export interface TerminalCommandStep {
+  command: string;
+  description: string;
+  output?: string;
+  validation?: 'exact' | 'contains' | 'regex';
+}
+
+
 export interface Activity {
   id: string;
   lessonId: string;
@@ -74,6 +82,8 @@ export interface Activity {
     expectedOutput: string;
     description: string;
   }[];
+  commands?: TerminalCommandStep[];
+  initialPrompt?: string;
 }
 
 export interface ProjectFile {

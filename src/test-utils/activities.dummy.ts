@@ -260,42 +260,6 @@ export function PromoBadge() {
     },
   },
   {
-<<<<<<< HEAD
-      id: 'act-10',
-      lessonId: 'lesson-1',
-      order: 1,
-      type: ActivityType.FIX_WITH_CHOICES,
-      title: 'Corrigir CheckoutPage',
-      objective: 'Resolver erro de undefined',
-      instructions: 'Escolha a melhor correção.',
-      status: ActivityStatus.LOCKED,
-      targetFiles: ['CheckoutPage.tsx'],
-      aiGeneratedCode: `
-    const items = cart.items;
-    return items.map(item => <Item key={item.id} />);
-      `,
-      options: [
-        {
-          id: 'fix-1',
-          code: 'const items = cart?.items;',
-          explanation: 'Evita crash mas não garante array.',
-          isCorrect: false,
-        },
-        {
-          id: 'fix-2',
-          code: 'const items = cart?.items ?? [];',
-          explanation: 'Garante array seguro mesmo se undefined.',
-          isCorrect: true,
-        },
-        {
-          id: 'fix-3',
-          code: 'try { ... } catch {}',
-          explanation: 'Esconde o erro.',
-          isCorrect: false,
-        }
-      ]
-    }
-=======
     id: 'act-8',
     lessonId: 'lesson-1',
     order: 9,
@@ -353,6 +317,37 @@ Corrija o algoritmo para que todos os testes passem.`,
         isCorrect: false,
       }
     ]
-  }
->>>>>>> 790e0a2299f0d55491a278569f49f7b5f712e3a6
+  },
+  {
+    id: 'act-20',
+    lessonId: 'lesson-1',
+    order: 11,
+    type: ActivityType.REPL_CHALLENGE,
+    title: 'Primeiros Passos com Git',
+    objective: 'Inicialize um repositório e faça seu primeiro commit.',
+    instructions: `Você acabou de criar o projeto BoxShop localmente.\n\nAgora precisa versionar o código usando Git.\n\nExecute os comandos na ordem correta para inicializar o repositório e registrar o primeiro commit.`,
+    targetFiles: ['.git/'],
+    status: ActivityStatus.LOCKED,
+    initialPrompt: '$ ',
+    commands: [
+      {
+        command: 'git init',
+        description: 'Inicializa o repositório Git local',
+        output: 'Initialized empty Git repository in /boxshop/.git/',
+        validation: 'exact',
+      },
+      {
+        command: 'git add .',
+        description: 'Adiciona todos os arquivos ao stage',
+        output: '',
+        validation: 'exact',
+      },
+      {
+        command: 'git commit -m "feat: initial commit"',
+        description: 'Cria o primeiro commit do projeto',
+        output: '[main (root-commit) a1b2c3d] feat: initial commit\n 12 files changed, 248 insertions(+)',
+        validation: 'exact',
+      },
+    ],
+  },
 ];

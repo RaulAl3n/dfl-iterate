@@ -26,6 +26,7 @@ import { lessonsData } from '@/test-utils/lessons.dummy';
 import { aiMessageTemplates } from '@/test-utils/ai-messages.dummy';
 import { FixWithChoices } from '@/components/activity/FixWithChoices';
 import { ReadAndChoose } from '@/components/molecules/ReadAndChoose/ReadAndChoose';
+import { REPLChallenge } from '@/components/activity/REPLChallenge';
 
 export default function LessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -347,6 +348,19 @@ export default function LessonPage() {
                 currentActivity.id,
                 selected?.isCorrect ? 'act-fix-success' : 'act-fix-wrong',
                 selected?.isCorrect
+              );
+            }}
+          />
+        );
+      case ActivityType.REPL_CHALLENGE:
+        return (
+          <REPLChallenge
+            activity={currentActivity}
+            onSubmit={(executedCommands) => {
+              handleActivityComplete(
+                currentActivity.id,
+                'act-terminal-success',
+                true
               );
             }}
           />

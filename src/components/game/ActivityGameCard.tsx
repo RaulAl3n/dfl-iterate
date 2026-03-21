@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { ActivityType } from '@/enums';
 import { Search, Scissors, GitBranch, Wrench, Video, Palette, Bug } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 
 interface ActivityGameCardProps {
   type: ActivityType;
@@ -59,7 +60,12 @@ const typeConfig: Record<ActivityType, { icon: typeof Search; label: string; col
     icon: Search,
     label: 'READ AND CHOOSE',
     color: 'text-primary'
-  }
+  },
+    [ActivityType.REPL_CHALLENGE]: {
+    icon: Terminal,
+    label: 'TERMINAL CHALLENGE',
+    color: 'text-green-400',
+  },
 };
 
 export function ActivityGameCard({ type, title, question, children, actions }: ActivityGameCardProps) {
