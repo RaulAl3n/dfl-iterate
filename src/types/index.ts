@@ -23,15 +23,13 @@ export type FixOption = {
   explanation: string;
   isCorrect: boolean;
 };
-<<<<<<< HEAD
-=======
+
 export interface ChooseOption {
   id: string;
   label: string;
   description: string;
 
 }
->>>>>>> 790e0a2299f0d55491a278569f49f7b5f712e3a6
 
 export interface EditableRegion {
   startLine: number;
@@ -62,13 +60,9 @@ export interface Activity {
   instructions: string;
   targetFiles: string[];
   status: ActivityStatus;
-<<<<<<< HEAD
-  options?: DecisionOption[] | FixOption[];
-=======
   options?: DecisionOption[];
   fixOptions?: FixOption[];
   choices?: ChooseOption[];
->>>>>>> 790e0a2299f0d55491a278569f49f7b5f712e3a6
   aiGeneratedCode?: string;
   expectedIssues?: string[];
   editableRegions?: EditableRegion[];

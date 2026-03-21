@@ -32,14 +32,13 @@ const typeConfig: Record<ActivityType, { icon: typeof Search; label: string; col
     label: 'BREAK & FIX',
     color: 'text-destructive'
   },
-<<<<<<< HEAD
-=======
+
   [ActivityType.FIX_THE_CODE]: {
     icon: Bug,
     label: 'FIX THE CODE',
     color: 'text-yellow-400'
   },
->>>>>>> 790e0a2299f0d55491a278569f49f7b5f712e3a6
+
   [ActivityType.VIDEO_CHALLENGE]: {
     icon: Video,
     label: 'VIDEO CHALLENGE',
@@ -50,27 +49,16 @@ const typeConfig: Record<ActivityType, { icon: typeof Search; label: string; col
     label: 'VISUAL IMPLEMENTATION',
     color: 'text-cyan-400'
   },
-<<<<<<< HEAD
 
-=======
->>>>>>> 790e0a2299f0d55491a278569f49f7b5f712e3a6
   [ActivityType.FIX_WITH_CHOICES]: {
     icon: Bug,
     label: 'FIX WITH CHOICES',
     color: 'text-red-400'
   },
-  [ActivityType.FIX_THE_CODE]: {
-    icon: undefined,
-    label: '',
-    color: ''
-<<<<<<< HEAD
-=======
-  },
   [ActivityType.READ_AND_CHOOSE]: {
     icon: Search,
     label: 'READ AND CHOOSE',
     color: 'text-primary'
->>>>>>> 790e0a2299f0d55491a278569f49f7b5f712e3a6
   }
 };
 
