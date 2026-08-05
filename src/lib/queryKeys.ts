@@ -17,6 +17,13 @@ export const queryKeys = {
   },
   activities: {
     byLesson: (lessonId: string) => ['activities', { lessonId }] as const,
+ },
+  userPreferences: {
+    current: ['user-preferences', 'current'] as const,
+  },
+  userStats: {
+    current: ['userStats', 'current'] as const,
+    byUserId: (userId: string) => ['userStats', { userId }] as const,
   },
   leaderboard: {
      all: ['leaderboard'] as const,
