@@ -1,6 +1,6 @@
 import type { LeaderboardEntry } from '@/types/LeaderboardEntry';
 
-export const leaderboardData: LeaderboardEntry[] = [
+const INITIAL: LeaderboardEntry[] = [
   {
     "rank": 1,
     "userId": "user-42",
@@ -42,3 +42,17 @@ export const leaderboardData: LeaderboardEntry[] = [
     "isCurrentUser": false
   }
 ];
+
+let data: LeaderboardEntry[] = [...INITIAL];
+
+export function getLeaderboardData(): LeaderboardEntry[] {
+  return data;  
+}
+
+export function resetLeaderboardData() {
+  data = [...INITIAL];
+}
+
+export function setLeaderboardData(newData: LeaderboardEntry[]) {
+  data = [...newData];
+}
