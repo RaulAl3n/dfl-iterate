@@ -21,4 +21,8 @@ export const queryKeys = {
   userPreferences: {
     current: ['user-preferences', 'current'] as const,
   },
+  userStats: {
+    current: ['userStats', 'current'] as const,
+    byUserId: (userId: string) => ['userStats', { userId }] as const,
+  },
 } as const;
