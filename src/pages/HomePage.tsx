@@ -4,10 +4,7 @@ import { Lesson } from '@/types';
 import { useLessons } from '@/hooks';
 import { Clock, Layers, ArrowRight, Loader2, RefreshCw } from 'lucide-react';
 import { Button } from '@devfellowship/components';
-import {
-  HomePageTopDataSlots,
-  HomePageBottomDataSlots,
-} from '@/components/data-layer/HomePageDataSlots';
+import { HomePageTopDataSlots } from '@/components/data-layer/HomePageDataSlots';
 import { HomePageHeaderDataSlots } from '@/components/data-layer/HomePageHeaderDataSlots';
 import { LessonProgressBar } from '@/components/data-layer';
 import { previewLessonProgress } from '@/components/data-layer/preview.mock';
@@ -99,8 +96,6 @@ export default function HomePage() {
               </div>
             )}
           </motion.div>
-
-          <HomePageBottomDataSlots />
 
           <motion.div
             className="max-w-4xl mx-auto mt-16"
