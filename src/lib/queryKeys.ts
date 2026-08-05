@@ -26,7 +26,6 @@ export const queryKeys = {
     byUserId: (userId: string) => ['userStats', { userId }] as const,
   },
   leaderboard: {
-     all: ['leaderboard'] as const,
-     list: () => ['leaderboard', 'list'] as const,
+     list: () => ['leaderboard'] as const,
    },
 } as const;
