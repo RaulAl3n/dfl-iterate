@@ -9,5 +9,6 @@ export type { UseFixTheCodeCallbacks } from './useFixTheCode';
 export { useQualityReview } from './useQualityReview';
 export type { UseQualityReviewCallbacks } from './useQualityReview';
 export { useLessons } from './useLessons';
+export { useGetRecentActivity } from './useGetRecentActivity';
 export { useGetUserStats } from './useGetUserStats';
 export { useGetUserPreferences } from './useGetUserPreferences';
