@@ -1,5 +1,6 @@
 import { ActivityType, ActivityStatus, ProjectStatus } from '@/enums';
 import { StepVariableValue } from './StepVariableValue';
+export * from './Notification';
 
 export interface Lesson {
   id: string;

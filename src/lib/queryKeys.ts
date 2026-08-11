@@ -23,4 +23,7 @@ export const queryKeys = {
     all: ['leaderboard'] as const,
     list: () => ['leaderboard', 'list'] as const,
   },
+  notifications: {
+    all: ['notifications'] as const,
+  },
 } as const;
