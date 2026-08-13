@@ -13,6 +13,10 @@ dist-ssr
 *.local
 docs
 
+# Local AI workflow (not shared via git)
+.cursor/rules/
+.cursor/mcp.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

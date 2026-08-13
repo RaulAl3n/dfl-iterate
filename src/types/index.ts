@@ -2,6 +2,8 @@ import { ActivityType, ActivityStatus, ProjectStatus } from '@/enums';
 import { StepVariableValue } from './StepVariableValue';
 export * from './Notification';
 
+export type { Announcement, AnnouncementSeverity } from './Announcement';
+
 export interface Lesson {
   id: string;
   title: string;

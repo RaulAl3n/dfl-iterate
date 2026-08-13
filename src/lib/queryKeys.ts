@@ -6,6 +6,9 @@ export const queryKeys = {
   activities: {
     byLesson: (lessonId: string) => ["activities", { lessonId }] as const,
   },
+  announcements: {
+    all: ['announcements'] as const,
+  },
   activityEvents: {
     recent: () => ['activityEvents', "recent"] as const,
   },
