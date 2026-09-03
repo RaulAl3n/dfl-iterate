@@ -29,4 +29,7 @@ export const queryKeys = {
   notifications: {
     all: ['notifications'] as const,
   },
+  userProfile: {
+    current: ["user-profile"] as const,
+  },
 } as const;

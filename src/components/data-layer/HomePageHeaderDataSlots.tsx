@@ -26,6 +26,8 @@ import {
 } from '@/components/data-layer/preview.mock';
 import { useGetUserPreferences } from '@/hooks';
 import { PreviewSectionLabel } from './PreviewSectionLabel';
+import { useGetUserProfile } from '@/hooks';
+import { i } from 'framer-motion/client';
 import { useGetUserStats } from '@/hooks';
 
 /**
@@ -41,6 +43,8 @@ export function HomePageHeaderDataSlots() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [achievementsOpen, setAchievementsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  
+  const { data: userProfileData, isPending: isUserProfilePending, isError: isUserProfileError, refetch: userProfileRefetch, } = useGetUserProfile();
   
   const {
     data: notificationsData,
@@ -192,7 +196,22 @@ export function HomePageHeaderDataSlots() {
 
 
       {/* SLOT T1 */}
-      <UserProfileCard profile={previewUserProfile} variant="compact" />
+      {isUserProfilePending ? (
+            <div>Loading...</div>
+         ) : isUserProfileError ? (
+            <>
+              <span>Erro</span>
+              <Button onClick={() => userProfileRefetch()}>
+                Tentar de novo
+              </Button>
+            </>
+         ) : (
+            <UserProfileCard 
+              profile={userProfileData} 
+              variant="compact" 
+            />
+         )
+      }
     </div>
   );
 }
