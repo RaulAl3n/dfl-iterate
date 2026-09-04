@@ -1,3 +1,4 @@
+import { useGetNotifications } from '@/hooks/useGetNotifications';
 import { useState } from 'react';
 import { Settings, Trophy } from 'lucide-react';
 import { Button } from '@devfellowship/components';
@@ -19,11 +20,14 @@ import {
 } from '@/components/data-layer';
 import {
   previewAchievements,
+  previewUserPreferences,
   previewNotifications,
   previewUserProfile,
 } from '@/components/data-layer/preview.mock';
 import { useGetUserPreferences } from '@/hooks';
 import { PreviewSectionLabel } from './PreviewSectionLabel';
+import { useGetUserProfile } from '@/hooks';
+import { i } from 'framer-motion/client';
 import { useGetUserStats } from '@/hooks';
 
 /**
@@ -39,13 +43,22 @@ export function HomePageHeaderDataSlots() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [achievementsOpen, setAchievementsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  
+  const { data: userProfileData, isPending: isUserProfilePending, isError: isUserProfileError, refetch: userProfileRefetch, } = useGetUserProfile();
+  
+  const {
+    data: notificationsData,
+    isPending: isNotificationsPending,
+    isError: isNotificationsError,
+    refetch: notificationsRefetch,
+  } = useGetNotifications();
+  
   const {
     data: preferences,
     isPending: isPreferencesPending,
     isError: isPreferencesError,
     refetch: refetchPreferences,
   } = useGetUserPreferences();
-
 
   const {
     data: userStatsData,
@@ -111,7 +124,7 @@ export function HomePageHeaderDataSlots() {
             className="h-9 w-9 shrink-0"
             aria-label="Notificações"
           >
-            <NotificationBellIcon unreadCount={previewNotifications.unreadCount} />
+            <NotificationBellIcon unreadCount={notificationsData?.unreadCount ?? 0} />
           </Button>
         </DrawerTrigger>
         <DrawerContent className="max-h-[85vh]">
@@ -120,7 +133,22 @@ export function HomePageHeaderDataSlots() {
           </DrawerHeader>
           <div className="overflow-y-auto px-4 pb-2">
             <PreviewSectionLabel taskId="T10" />
-            <NotificationList summary={previewNotifications} />
+            {isNotificationsPending ? (
+              <p className="text-sm text-muted-foreground text-center py-6">
+                Carregando...
+              </p>
+            ) : isNotificationsError ? (
+              <div className="text-center py-6">
+                <p className="text-sm text-destructive mb-2">
+                  Erro ao carregar notificações.
+                </p>
+                <Button variant="outline" size="sm" onClick={() => notificationsRefetch()}>
+                  Tentar de novo
+                </Button>
+              </div>
+            ) : (
+              <NotificationList summary={notificationsData} />
+            )}
           </div>
           <DrawerClose asChild>
             <Button variant="outline" className="mx-4 mb-4">
@@ -168,7 +196,22 @@ export function HomePageHeaderDataSlots() {
 
 
       {/* SLOT T1 */}
-      <UserProfileCard profile={previewUserProfile} variant="compact" />
+      {isUserProfilePending ? (
+            <div>Loading...</div>
+         ) : isUserProfileError ? (
+            <>
+              <span>Erro</span>
+              <Button onClick={() => userProfileRefetch()}>
+                Tentar de novo
+              </Button>
+            </>
+         ) : (
+            <UserProfileCard 
+              profile={userProfileData} 
+              variant="compact" 
+            />
+         )
+      }
     </div>
   );
 }

@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Lesson } from '@/types';
-import { useLessons } from '@/hooks';
+import { useLessons, useLessonProgressBarById } from '@/hooks';
 import { Clock, Layers, ArrowRight, Loader2, RefreshCw } from 'lucide-react';
 import { Button } from '@devfellowship/components';
 import { HomePageTopDataSlots } from '@/components/data-layer/HomePageDataSlots';
 import { HomePageHeaderDataSlots } from '@/components/data-layer/HomePageHeaderDataSlots';
 import { LessonProgressBar } from '@/components/data-layer';
-import { previewLessonProgress } from '@/components/data-layer/preview.mock';
 import { PreviewSectionLabel } from '@/components/data-layer/PreviewSectionLabel';
 import { LeaderboardTable } from '@/components/data-layer/LeaderboardTable';
 import { useGetLeaderboard } from '@/hooks/useGetLeaderBoardTable';
@@ -146,6 +145,8 @@ interface LessonCardProps {
 }
 
 function LessonCard({ lesson, index, onStart }: LessonCardProps) {
+  const { data, isPending, isError, refetch } = useLessonProgressBarById(lesson.id);
+
   return (
     <motion.div
       className="card-interactive p-6"
@@ -176,7 +177,18 @@ function LessonCard({ lesson, index, onStart }: LessonCardProps) {
 
           <div className="mt-4 max-w-md" data-slot="T5">
             <PreviewSectionLabel taskId="T5" />
-            <LessonProgressBar progress={previewLessonProgress} />
+            {isPending ? (
+              <div className="text-sm text-muted-foreground">Carregando progresso...</div>
+            ) : isError ? (
+              <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+                <span>Falha ao carregar o progresso.</span>
+                <button type="button" className="text-primary underline" onClick={() => refetch()}>
+                  Tentar de novo
+                </button>
+              </div>
+            ) : data ? (
+              <LessonProgressBar progress={data} />
+            ) : null}
           </div>
         </div>
 
