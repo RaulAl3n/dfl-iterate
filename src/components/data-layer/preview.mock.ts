@@ -4,7 +4,6 @@
  * REMOVER quando fellows integrarem hooks reais — substituir por useGet* + dummy/service.
  * Fellows: não importem este arquivo nas tasks finais.
  */
-import type { Announcement } from '@/types';
 import type {
   ActivityEvent,
   Announcement,
@@ -18,7 +17,6 @@ import type {
   UserProfile,
   UserStats,
 } from './types';
-import { ActivityEvent } from '@/types'
 
 export const previewUserProfile: UserProfile = {
   id: 'user-1',
